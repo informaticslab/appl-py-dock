@@ -1,0 +1,262 @@
+{% extends 'applab/applab_base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+   <div class="app-display">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 app-download-section">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
+                            <img src="{{ appDetail.overview.icon.url }}" width="512" height="512" class="img-responsive">
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-7">
+                            <h1 class="titlefonts">{{appDetail.title}} <span class="icon-{{appDetail.platform}}"></span></h1>
+                            <p class="version-text">Version {{ appDetail.releaseVersion }}<br />
+
+                                <!-- app_identifier text is commented out pending further review -->
+                                <!--<p class="version-text">{{ appDetail.app_identifier }}</p>-->
+
+                                <i>Updated: {{ appDetail.currentRelease.timestamp}}</i></p>
+                            <a href="{% url 'app_download' appDetail.platform appDetail.currentRelease.id %}" role="button" class="btn btn-success dl-btn">Download</a>
+                            {% if appDetail.overview.source_code_link %}
+                                <a href="{{appDetail.overview.source_code_link}}" target="_blank" role="button" class="btn btn-default gh-btn">View Source</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+              {% if appDetail.releaseVersion != appDetail.latestVersion %}
+                <div class="row" style="padding-top:5px;">
+                    <div class="col-lg-12 alert alert-warning" role="alert">
+
+                            <p>This app is out of date. To view the latest version please <a href="{% url 'app_release_page' appDetail.platform appDetail.latestRelease.id %}">click here</a>.</p>
+
+                    </div>
+                </div>
+             {% endif %}
+            <div class="row">
+                <div class="col-lg-12 app-content-section">
+
+                    <div id="cont1">
+                        <div id="myCarousel1" class="carousel slide">
+
+                            <!-- Carousel items -->
+                            <div class="carousel-inner center-block">
+                                {% for group in appDetail.screenshotGroups1 %}
+                                <div class="item {% if forloop.counter0 = 0 %}  active {% endif %}">
+                                    <div class="row">
+                                       {% for screen in group %}
+                                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                             <a href="#myModal" data-toggle="modal" data-target="#myModal" class="screen-modal"><img src="{{ screen.screenshot.url }}" alt="Image" class="img-responsive center-block"></a>
+                                           </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <!--/item-->
+                              {% endfor %}
+                            </div>
+                            <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel1" data-slide="prev">‹</a>
+
+                            <a class="right carousel-control" href="#myCarousel1" data-slide="next">›</a>
+                        </div>
+                    <!--/myCarousel-->
+                        </div>
+                    <div id="cont2">
+                        <div id="myCarousel2" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner center-block">
+                                {% for group in appDetail.screenshotGroups2 %}
+                                <div class="item {% if forloop.counter0 = 0 %}  active {% endif %}">
+                                    <div class="row">
+                                       {% for screen in group %}
+                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                             <a href="#myModal" data-toggle="modal" data-target="#myModal" class="screen-modal"><img src="{{ screen.screenshot.url }}" alt="Image" class="img-responsive center-block"></a>
+                                           </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <!--/item-->
+                              {% endfor %}
+                            </div>
+                            <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel2" data-slide="prev">‹</a>
+
+                            <a class="right carousel-control" href="#myCarousel2" data-slide="next">›</a>
+                        </div>
+                    <!--/myCarousel-->
+                        </div>
+                    <div id="cont3">
+                        <div id="myCarousel3" class="carousel slide">
+
+                            <!-- Carousel items -->
+                            <div class="carousel-inner center-block">
+                                {% for group in appDetail.screenshotGroups3 %}
+                                <div class="item {% if forloop.counter0 = 0 %}  active {% endif %}">
+                                    <div class="row">
+                                       {% for screen in group %}
+                                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                             <a href="#myModal" data-toggle="modal" data-target="#myModal" class="screen-modal"><img src="{{ screen.screenshot.url }}" alt="Image" class="img-responsive center-block"></a>
+                                           </div>
+                                        {% endfor %}
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                                <!--/item-->
+                              {% endfor %}
+                            </div>
+                            <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel3" data-slide="prev">‹</a>
+
+                            <a class="right carousel-control" href="#myCarousel3" data-slide="next">›</a>
+                        </div>
+                    <!--/myCarousel-->
+                        </div>
+                    <div id="cont4">
+                    <div id="myCarousel4" class="carousel slide">
+
+                        <!-- Carousel items -->
+                        <div class="carousel-inner center-block">
+                            {% for group in appDetail.screenshotGroups4 %}
+                            <div class="item {% if forloop.counter0 = 0 %}  active {% endif %}">
+                                <div class="row">
+                                   {% for screen in group %}
+                                       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                         <a href="#myModal" data-toggle="modal" data-target="#myModal" class="screen-modal"><img src="{{ screen.screenshot.url }}" alt="Image" class="img-responsive center-block"></a>
+                                       </div>
+                                    {% endfor %}
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                          {% endfor %}
+                        </div>
+                        <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel4" data-slide="prev">‹</a>
+
+                        <a class="right carousel-control" href="#myCarousel4" data-slide="next">›</a>
+                    </div>
+                    <!--/myCarousel-->
+                        </div>
+
+                </div>
+                <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              </div>
+                              <div class="modal-body">
+                                <img id="modal-img" src="#" alt="Image" class="img-responsive center-block">
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+            </div>
+            <br>
+            <hr class="hr-cust">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h3>What’s New in Version {{ appDetail.releaseVersion}}</h3>
+                        <p>{{ appDetail.currentRelease.what_is_new|linebreaks  }}</p>
+                    <hr class="hr-cust">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Description</h3>
+                    <p>{{ appDetail.overview.description|linebreaks }}</p>
+                    <!--<p>Welcome to AppLab. This is a tool for the IIU, CDC, and its public health partners to test and collaborate on innovative mobile applications. AppLab showcases iOS and Android apps.</p>-->
+
+                    <!--<p>Every app has a page which provides an overview / summary and will often include screenshots. The bottom of the overview page will display the-->
+                    <!--versions of the app currently available for download. Every app will have at least one version to download. For most users, we recommend-->
+                    <!--downloading the most recent version (top of the list). </p>-->
+                    <hr class="hr-cust">
+
+                </div>
+            </div>
+                {% if appDetail.previousReleases %}
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Other Releases
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                            <div class="row">
+                                {% for previousRelease in appDetail.previousReleases %}
+                                  <div class="col-lg-4 col-md-4">
+
+                                      <strong><a href="{% url 'app_release_page' appDetail.platform previousRelease.id %}">{{appDetail.title}}</a></strong><br>
+                                        <span class="version-released">Release {{previousRelease.major_version}}.{{previousRelease.minor_version}}.{{previousRelease.point_version}}.{{previousRelease.build_version}}<br>
+                                        Released: {{previousRelease.timestamp}}</span>
+                                        <br><br>
+
+                                  </div>
+                                {% endfor %}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script>
+        $(document).on('click','.screen-modal',function() {
+            var imgSrcVal = $("img", this).attr("src");
+            $('#modal-img').attr('src', imgSrcVal);
+        });
+    </script>
+<script>
+    var screenWidth= screen.width;
+    var cont1= document.getElementById("cont1");
+    var cont2= document.getElementById("cont2");
+    var cont3= document.getElementById("cont3");
+    var cont4= document.getElementById("cont4");
+    cont1.style.display = "none";
+    cont2.style.display = "none";
+    cont3.style.display = "none";
+    cont4.style.display = "none";
+
+    //var cont2= document.getElementById("cont2");
+    //cont2.style.display = "none";
+
+
+    if(screenWidth> 800)
+    {
+        cont4.style.display = "block";
+    }
+    else if (screenWidth > 600 && screenWidth <= 800){
+        cont3.style.display = "block";
+    }
+    else if (screenWidth >400 && screenWidth <= 600){
+        cont2.style.display = "block";
+    }
+    else if (screenWidth<=400)
+    {
+        cont1.style.display = "block";
+    }
+
+</script>
+{% endblock %}

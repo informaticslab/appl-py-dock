@@ -1,0 +1,129 @@
+{% extends 'applab/base.html' %}
+{% load staticfiles %}
+{% block content %}
+   <div class="app-display">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 app-download-section">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
+                            <img src="{% static 'img/placeholder-icon.png' %}" class="img-responsive">
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-7">
+                            <h1>Lifeguard (iOS)</h1>
+                            <p class="version-text">Version 0.25
+                                <br><i>Updated: 01/05/2016</i></p>
+                            <button type="button" class="btn btn-success dl-btn">Download</button>
+                            <button type="button" class="btn btn-default gh-btn">View on GitHub</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 late-version">
+                    <p>This app is out of date. To view the latest version please <a href="#">click here</a>.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 app-content-section">
+                    <div id="myCarousel" class="carousel slide">
+
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            {% for group in projectDetail.screenshotGroups %}
+                            <div class="item {% if forloop.counter0 = 0 %}  active {% endif %}">
+                                <div class="row">
+                                   {% for screen in group %}
+                                       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                         <a href="#myModal" data-toggle="modal" data-target="#myModal"><img src="{{ screen.screenshot.url }}" alt="Image" class="img-responsive"></a>
+                                       </div>
+                                    {% endfor %}
+                                </div>
+                                <!--/row-->
+                            </div>
+                            <!--/item-->
+                          {% endfor %}
+                        </div>
+                        <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                    </div>
+                    <!--/myCarousel-->
+
+                </div>
+                <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                              </div>
+                              <div class="modal-body">
+                                ...
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+            </div>
+            <br>
+            <hr class="hr-cust">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h3>What’s New in Version 1.0</h3>
+                    <ul>
+                        <li>New settings design</li>
+                        <li>Free crash reports</li>
+                        <li>Displays</li>
+                    </ul>
+                    <hr class="hr-cust">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Description</h3>
+                    <p>Welcome to App Lab. This is a tool for the IIU, CDC, and its public health partners to test and collaborate on innovative mobile applications. App Lab showcases iOS and Android apps.</p>
+
+                    <p>Every app has a page which provides an overview / summary and will often include screenshots. The bottom of the overview page will display the
+                    versions of the app currently available for download. Every app will have at least one version to download. For most users, we recommend
+                    downloading the most recent version (top of the list). </p>
+                    <hr class="hr-cust">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Collapsible Group Item #1
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+
+{% endblock %}
